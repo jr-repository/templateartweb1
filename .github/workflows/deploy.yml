@@ -1,0 +1,25 @@
+name: Deploy ke GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Menjalankan deploy setiap ada perubahan di branch main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Deploy ke GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Branch tujuan untuk deploy
+          folder: .  # Deploy semua file di repo
